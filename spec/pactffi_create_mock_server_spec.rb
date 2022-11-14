@@ -75,7 +75,7 @@ RSpec.describe 'pactffi_create_mock_server spec matching' do
   end
 end
 
-RSpec.describe 'pactffi_create_mock_server spec mismatching' do
+RSpec.xdescribe 'pactffi_create_mock_server spec mismatching' do
   describe 'with mismatching requests' do
     before do
       PactRubyFfi.pactffi_logger_init
