@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.description   = 'Simple demo of using gRPC from Ruby'
 
   s.files         = `git ls-files -- *`.split("\n")
-  s.executables   = `git ls-files -- area_calculator*.rb`.split("\n").map do |f|
-    File.basename(f)
-  end
+  # s.executables   = `git ls-files -- area_calculator*.rb`.split("\n").map do |f|
+  #   File.basename(f)
+  # end
   s.require_paths = ['lib','../../lib']
   s.platform      = Gem::Platform::RUBY
 
@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json', '~> 1.13.1'
   s.add_development_dependency 'bundler', '>= 1.9'
   s.add_development_dependency 'pact_ruby_ffi', '>= 0.1.0'
+  s.add_development_dependency 'rspec', '~> 3.0'
 end

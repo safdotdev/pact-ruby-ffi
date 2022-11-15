@@ -44,7 +44,7 @@ install_demo_grpc:
 	cd examples/area_calculator && bundle install
 
 test_demo_gprc_pact:
-	rspec examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb
+	export DEBUG_TARGET="$(shell ruby lib/detect_os.rb)" && cd examples/area_calculator && rspec spec/pactffi_create_plugin_pact_spec.rb
 
 show_demo_gprc_pact:
 	cat pacts/grpc-consumer-ruby-area-calculator-provider.json | jq .
