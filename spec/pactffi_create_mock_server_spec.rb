@@ -56,7 +56,7 @@ RSpec.describe 'pactffi_create_mock_server spec matching' do
           '
     end
 
-    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:0') }
+    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:4432') }
 
     after do
       expect(PactRubyFfi.pactffi_mock_server_matched(mock_server_port)).to be true
@@ -143,7 +143,7 @@ RSpec.xdescribe 'pactffi_create_mock_server spec mismatching' do
     end
 
     # this fails in CI as http client cannot connect to mock server
-    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:0') }
+    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:4433') }
 
     after do
       expect(PactRubyFfi.pactffi_mock_server_matched(mock_server_port)).to be false
