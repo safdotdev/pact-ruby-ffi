@@ -29,9 +29,9 @@ jobs:
       - run: make test_pactffi_create_mock_server_for_pact
       - run: make show_pactffi_create_mock_server_for_pact
       - run: make test_pactffi_create_mock_server
-        if: runner.os = 'Linux'
+        if: runner.os == 'Linux'
       - run: make show_pactffi_create_mock_server
-        if: runner.os = 'Linux'
+        if: runner.os == 'Linux'
       - run: make publish_pacts
         env:
           PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
