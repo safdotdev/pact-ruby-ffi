@@ -83,7 +83,7 @@ publish_grpc_pact:
 
 verify_demo_gprc_publish_broker:
 	TEST_COMMAND="pact/verifier/pact_verifier_cli \
-	-f pacts/grpc-consumer-ruby-area-calculator-provider.json \
+	-f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json \
 	-p 37757 \
 	-l info \
 	--publish \
