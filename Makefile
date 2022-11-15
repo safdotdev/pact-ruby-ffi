@@ -95,7 +95,7 @@ verify_demo_gprc_publish_broker:
 verify_demo_gprc_fetch_broker:
 	TEST_COMMAND="pact/verifier/pact_verifier_cli \
 	-p 37757 \
-	-l debug \
+	-l info \
 	--publish \
 	--provider-name area-calculator-provider \
 	--provider-version $(shell git rev-parse HEAD)${detected_OS} \
