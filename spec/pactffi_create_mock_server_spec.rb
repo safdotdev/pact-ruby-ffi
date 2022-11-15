@@ -56,7 +56,7 @@ RSpec.describe 'pactffi_create_mock_server spec matching' do
           '
     end
 
-    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:4432') }
+    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '0.0.0.0:4432') }
 
     after do
       expect(PactRubyFfi.pactffi_mock_server_matched(mock_server_port)).to be true
@@ -68,7 +68,7 @@ RSpec.describe 'pactffi_create_mock_server spec matching' do
     it 'executes the pact test with no errors' do
       puts "Mock server port=#{mock_server_port}"
 
-      response = HTTParty.get("http://127.0.0.1:#{mock_server_port}/mallory?name=ron&status=good")
+      response = HTTParty.get("http://0.0.0.0:#{mock_server_port}/mallory?name=ron&status=good")
 
       expect(response.body).to eq 'That is some good Mallory.'
     end
@@ -143,7 +143,7 @@ RSpec.xdescribe 'pactffi_create_mock_server spec mismatching' do
     end
 
     # this fails in CI as http client cannot connect to mock server
-    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '127.0.0.1:4433') }
+    let!(:mock_server_port) { PactRubyFfi.pactffi_create_mock_server(pact, '0.0.0.0:4433') }
 
     after do
       expect(PactRubyFfi.pactffi_mock_server_matched(mock_server_port)).to be false
@@ -158,10 +158,10 @@ RSpec.xdescribe 'pactffi_create_mock_server spec mismatching' do
 
       expect(PactRubyFfi.pactffi_mock_server_matched(mock_server_port)).to be false
 
-      response1 = HTTParty.post("http://127.0.0.1:#{mock_server_port}/",
+      response1 = HTTParty.post("http://0.0.0.0:#{mock_server_port}/",
                                 headers: { 'Content-Type': 'application/json' }, body: '{}')
 
-      response2 = HTTParty.put("http://127.0.0.1:#{mock_server_port}/mallory", body: {
+      response2 = HTTParty.put("http://0.0.0.0:#{mock_server_port}/mallory", body: {
                                  complete: {
                                    certificateUri: 'http://...',
                                    issues: {},
