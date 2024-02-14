@@ -8,7 +8,7 @@ require_binary gunzip
 
 require_env_var VERIFIER_CLI_VERSION
 
-BASEURL=https://github.com/pact-foundation/pact-reference/releases/download
+BASEURL=https://github.com/you54f/pact-reference/releases/download
 VERIFIER_CLI_DIR="${LIB_DIR}/../../pact/verifier"
 
 if [[ $(find "${VERIFIER_CLI_DIR}" -name "${VERIFIER_CLI_VERSION}*") ]]; then
@@ -83,13 +83,13 @@ case ${detected_os} in
     ;;
 "Linux aarch64"* | "Linux arm64"*)
     echo "downloading of linux aarch64 FFI libs"
-    os='linux-aarch64'
-    download_verifier_cli "linux-aarch64.gz" "" "pact_verifier_cli.gz" "${os}"
+    os='linux-aarch64-musl'
+    download_verifier_cli "linux-aarch64-musl.gz" "" "pact_verifier_cli.gz" "${os}"
     ;;
 'Linux x86_64' | "Linux"*)
     echo "downloading of linux x86_64 FFI libs"
-    os='linux-x86_64'
-    download_verifier_cli "linux-x86_64.gz" "" "pact_verifier_cli.gz" "${os}"
+    os='linux-x86_64-musl'
+    download_verifier_cli "linux-x86_64-musl.gz" "" "pact_verifier_cli.gz" "${os}"
     ;;
 "Windows"* | "MINGW64"*)
     echo "downloading of windows x86_64 FFI libs"

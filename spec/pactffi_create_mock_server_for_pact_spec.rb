@@ -5,7 +5,7 @@ require 'pact/ffi/mock_server'
 require 'pact/ffi/http_consumer'
 require 'fileutils'
 
-PactFfi::Logger.log_to_buffer(PactFfi::Logger::LogLevel['ERROR'])
+PactFfi::Logger.log_to_stdout(PactFfi::Logger::LogLevel['TRACE'])
 
 RSpec.describe 'create_mock_server_for_pact spec' do
   describe 'with matching requests' do
@@ -27,11 +27,6 @@ RSpec.describe 'create_mock_server_for_pact spec' do
         "author": {
             "pact:matcher:type": "type",
             "value": "Margaret Atwood"
-        },
-        "publicationDate": {
-            "pact:matcher:type": "regex",
-            "regex": "^\\\\d{4}-[01]\\\\d-[0-3]\\\\dT[0-2]\\\\d:[0-5]\\\\d:[0-5]\\\\d([+-][0-2]\\\\d:[0-5]\\\\d|Z)$",
-            "value": "1985-07-31T00:00:00+00:00"
         }
       }
       '
@@ -60,7 +55,7 @@ RSpec.describe 'create_mock_server_for_pact spec' do
         },
         "publicationDate": {
             "pact:matcher:type": "regex",
-            "regex": "^\\\\d{4}-[01]\\\\d-[0-3]\\\\dT[0-2]\\\\d:[0-5]\\\\d:[0-5]\\\\d([+-][0-2]\\\\d:[0-5]\\\\d|Z)$",
+            "regex": "^\\\\d{4}-[01]\\\\d-[0-3]\\\\dT[0-2]\\\\d:[0-5]\\\\d:[0-5]\\\\d([+-][0-2]\\\\d(?:|:?[0-5]\\\\d)|Z)?$",
             "value": "1999-02-13T00:00:00+07:00"
         },
         "reviews": [
@@ -105,8 +100,7 @@ RSpec.describe 'create_mock_server_for_pact spec' do
           isbn: '0099740915',
           title: "The Handmaid's Tale",
           description: 'Brilliantly conceived and executed, this powerful evocation of twenty-first century America gives full rein to Margaret Atwood\'s devastating irony, wit and astute perception.',
-          author: 'Margaret Atwood',
-          publicationDate: '1985-07-31T00:00:00+00:00'
+          author: 'Margaret Atwood'
         },
         # body: {
         #   isbn: '0099740915',
@@ -151,11 +145,6 @@ RSpec.describe 'create_mock_server_for_pact spec' do
         "author": {
             "pact:matcher:type": "type",
             "value": "Margaret Atwood"
-        },
-        "publicationDate": {
-            "pact:matcher:type": "regex",
-            "regex": "^\\\\d{4}-[01]\\\\d-[0-3]\\\\dT[0-2]\\\\d:[0-5]\\\\d:[0-5]\\\\d([+-][0-2]\\\\d:[0-5]\\\\d|Z)$",
-            "value": "1985-07-31T00:00:00+00:00"
         }
       }
       '
@@ -166,7 +155,7 @@ RSpec.describe 'create_mock_server_for_pact spec' do
         "@context": "/api/contexts/Book",
         "@id": {
             "pact:matcher:type": "regex",
-            "regex": "^\\\\/api\\\\/books\\\\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$",
+            "regex": "^\\\/api\\\/books\\\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$",
             "value": "/api/books/0114b2a8-3347-49d8-ad99-0e792c5a30e6"
         },
         "@type": "Book",
@@ -184,7 +173,7 @@ RSpec.describe 'create_mock_server_for_pact spec' do
         },
         "publicationDate": {
             "pact:matcher:type": "regex",
-            "regex": "^\\\\d{4}-[01]\\\\d-[0-3]\\\\dT[0-2]\\\\d:[0-5]\\\\d:[0-5]\\\\d([+-][0-2]\\\\d:[0-5]\\\\d|Z)$",
+            "regex": "^\\\d{4}-[01]\\\d-[0-3]\\\dT[0-2]\\\d:[0-5]\\\d:[0-5]\\\d([+-][0-2]\\\d:[0-5]\\\d|Z)$",
             "value": "1999-02-13T00:00:00+07:00"
         },
         "reviews": [

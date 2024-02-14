@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL := /bin/sh
 
 ifeq '$(findstring ;,$(PATH))' ';'
 	detected_OS := Windows
