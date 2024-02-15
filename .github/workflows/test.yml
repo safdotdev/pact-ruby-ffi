@@ -77,7 +77,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with: # gRPC demo requires Ruby < 3.0
           ruby-version: ${{ matrix.ruby-version }}
-      - if: runner.os == 'macos-12' || runner.os == 'macos-14'
+      - if: matrix.os == 'macos-14'
         run: brew install protobuf
       - run: gem update bundler
       - run: make install
