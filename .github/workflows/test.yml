@@ -5,41 +5,41 @@ on:
   workflow_dispatch:
 
 jobs:
-  # test_ffi:
-  #   timeout-minutes: 10
-  #   strategy:
-  #     matrix:
-  #       os: [ubuntu-latest, windows-latest, macos-12, macos-14]
-  #       ruby-version: ['2.6','2.7', '3.0', '3.1','3.2','3.3']
-  #     fail-fast: false
-  #   runs-on: ${{ matrix.os }}
-  #   defaults:
-  #     run:
-  #       shell: bash
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: ${{ matrix.ruby-version }}
-  #     - run: gem update bundler
-  #     - run: make install
-  #     - run: make download_all_libs
-  #     - run: make test
-  #     # - run: make publish_pacts
-  #     #   env:
-  #     #     PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
-  #     #     PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
+  test_ffi:
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-12, macos-14]
+        ruby-version: ['2.6','2.7', '3.0', '3.1','3.2','3.3']
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - run: gem update bundler
+      - run: make install
+      - run: make download_all_libs
+      - run: make test
+      # - run: make publish_pacts
+      #   env:
+      #     PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+      #     PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
     
   test_ffi_alpine:
     timeout-minutes: 10
     strategy:
       matrix:
         ruby-version: [
-          # '2.7', 
-          # '3.0', 
-          # '3.1',
+          '2.7', 
+          '3.0', 
+          '3.1',
           '3.2', 
-          # '3.3'
+          '3.3'
           ]
         arch: [amd64,arm64]
       fail-fast: false
@@ -61,39 +61,46 @@ jobs:
             --rm -v $PWD:/app ruby:${{ matrix.ruby-version }}-alpine \
             /bin/sh -c \
             'apk add --no-cache make gcc musl-dev libffi libffi-dev git bash curl && \
-            cd /app && make download_all_libs && make install && make test && \
-            apk add --no-cache g++ protoc protobuf-dev && make install_protobuf_plugin_musl && gem install --platform ruby grpc && make grpc'
+            cd /app && make download_all_libs && make install && make test'
     
-  # grpc_demo_protobuf_plugin:
-  #   timeout-minutes: 10
-  #   strategy:
-  #     matrix:
-  #       os: [
-  #         ubuntu-latest, 
-  #         windows-latest,
-  #         macos-12, 
-  #         macos-14
-  #         ]
-  #       ruby-version: [
-  #         '2.7', 
-  #         '3.0', 
-  #         '3.1',
-  #         '3.2', 
-  #         '3.3'
-  #         ]
-  #     fail-fast: false
-  #   runs-on: ${{ matrix.os }}
-  #   defaults:
-  #     run:
-  #       shell: bash
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: ruby/setup-ruby@v1
-  #       with: # gRPC demo requires Ruby < 3.0
-  #         ruby-version: ${{ matrix.ruby-version }}
-  #     - if: matrix.os == 'macos-14'
-  #       run: brew install protobuf
-  #     - run: gem update bundler
-  #     - run: make install
-  #     - run: make download_all_libs
-  #     - run: make grpc
+      # - run: | 
+      #     docker run --platform=linux/${{ matrix.arch }} \
+      #       --rm -v $PWD:/app ruby:${{ matrix.ruby-version }}-alpine \
+      #       /bin/sh -c \
+      #       'apk add --no-cache make gcc musl-dev libffi libffi-dev git bash curl && \
+      #       cd /app && make download_all_libs && make install && make test && \
+      #       apk add --no-cache g++ protoc protobuf-dev && make install_protobuf_plugin_musl && gem install --platform ruby grpc && make grpc'
+    
+  grpc_demo_protobuf_plugin:
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        os: [
+          ubuntu-latest, 
+          windows-latest,
+          macos-12, 
+          macos-14
+          ]
+        ruby-version: [
+          '2.7', 
+          '3.0', 
+          '3.1',
+          '3.2', 
+          '3.3'
+          ]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with: # gRPC demo requires Ruby < 3.0
+          ruby-version: ${{ matrix.ruby-version }}
+      - if: matrix.os == 'macos-14'
+        run: brew install protobuf
+      - run: gem update bundler
+      - run: make install
+      - run: make download_all_libs
+      - run: make grpc
