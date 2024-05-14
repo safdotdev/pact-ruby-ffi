@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.0'
   s.add_dependency 'multi_json', '~> 1.15'
   s.add_development_dependency 'bundler', '>= 2.3'
-  s.add_development_dependency 'pact-ffi', '>= 0.1.0'
+  s.add_development_dependency 'pact-ffi', '>= 0'
 end
