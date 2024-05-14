@@ -22,3 +22,4 @@ getpact.docker-compose.yml
 .DS_Store
 .rspec_status
 Gemfile.lock
+*.tar.gz

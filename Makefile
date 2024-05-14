@@ -40,11 +40,11 @@ test_pactffi_create_mock_server:
 show_pactffi_create_mock_server:
 	cat "pacts/Consumer-pact-ruby-ffi-Alice Service.json" | jq .
 
-install_protobuf_plugin:
-	pact/plugin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest
+# install_protobuf_plugin:
+# 	pact/plugin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest
 
-install_protobuf_plugin_musl:
-	pact/plugin/pact-plugin-cli -y install https://github.com/YOU54F/pact-protobuf-plugin/releases/tag/v-0.3.14
+# install_protobuf_plugin_musl:
+# 	pact/plugin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/tag/v-0.3.15
 
 grpc: install_demo_grpc test_demo_gprc_pact verify_demo_gprc_local
 install_demo_grpc:
