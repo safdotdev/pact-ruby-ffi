@@ -61,7 +61,7 @@ if [ -z "${ONLY_DOWNLOAD_PACT_FOR_WINDOWS:-}" ]; then
   download_ffi "linux-x86_64-musl.so.gz" "lib" "linux-x64-musl/libpact_ffi.so.gz"
   download_ffi "linux-aarch64-musl.so.gz" "lib" "linux-arm64-musl/libpact_ffi.so.gz"
   download_ffi "osx-x86_64.dylib.gz" "lib" "macos-x64/libpact_ffi.dylib.gz"
-  download_ffi "osx-aarch64-apple-darwin.dylib.gz" "lib" "macos-arm64/libpact_ffi.dylib.gz"
+  download_ffi "osx-aarch64.dylib.gz" "lib" "macos-arm64/libpact_ffi.dylib.gz"
 else
   warn "Skipped download of non-windows FFI libs because ONLY_DOWNLOAD_PACT_FOR_WINDOWS is set"
 fi
