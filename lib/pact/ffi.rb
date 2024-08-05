@@ -305,7 +305,7 @@ module PactFfi
   attach_function :new_sync_message_interaction, :pactffi_new_sync_message_interaction, %i[uint16 string], :uint32_type
   attach_function :upon_receiving, :pactffi_upon_receiving, %i[uint32_type string], :bool
   attach_function :given, :pactffi_given, %i[uint32_type string], :bool
-  attach_function :given, :pactffi_given, %i[uint32_type string], :bool
+  # attach_function :given, :pactffi_given, %i[uint32_type string], :bool
   attach_function :given_with_params, :pactffi_given_with_params, %i[uint32_type string string], :int32
   attach_function :interaction_test_name, :pactffi_interaction_test_name, %i[uint32_type string], :uint32_type
   attach_function :given_with_param, :pactffi_given_with_param, %i[uint32_type string string string], :bool
@@ -364,8 +364,8 @@ module PactFfi
   attach_function :verifier_logs_for_provider, :pactffi_verifier_logs_for_provider, %i[string], :string
   attach_function :verifier_output, :pactffi_verifier_output, %i[pointer uint8], :string
   attach_function :verifier_json, :pactffi_verifier_json, %i[pointer], :string
-  attach_function :using_plugin, :pactffi_using_plugin, %i[uint16 string string], :uint32_type
-  attach_function :cleanup_plugins, :pactffi_cleanup_plugins, %i[uint16], :void
+  attach_function :using_plugin, :pactffi_using_plugin, %i[pointer string string], :uint32_type
+  attach_function :cleanup_plugins, :pactffi_cleanup_plugins, %i[pointer], :void
   attach_function :interaction_contents, :pactffi_interaction_contents, %i[uint32_type int32 string string], :uint32_type
   attach_function :matches_string_value, :pactffi_matches_string_value, %i[pointer string string uint8], :string
   attach_function :matches_u64_value, :pactffi_matches_u64_value, %i[pointer ulong_long ulong_long uint8], :string

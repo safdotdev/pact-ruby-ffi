@@ -110,7 +110,7 @@ RSpec.describe 'new_message spec' do
     end
 
     before do
-      PactFfi::HttpConsumer.with_specification(pact, PactFfi::FfiSpecificationVersion['SPECIFICATION_VERSION_V3'])
+      PactFfi::HttpConsumer.with_fspecification(pact, PactFfi::FfiSpecificationVersion['SPECIFICATION_VERSION_V3'])
       PactFfi::HttpConsumer.upon_receiving(interaction, 'A PUT request to generate book cover')
       PactFfi::HttpConsumer.given(interaction, 'A book with id fb5a885f-f7e8-4a50-950f-c1a64a94d500 is required')
       PactFfi::HttpConsumer.with_request(interaction, 'PUT',
